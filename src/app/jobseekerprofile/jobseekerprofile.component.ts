@@ -11,28 +11,23 @@ export class JobseekerprofileComponent {
       fullName: '',
       email: '',
       phone: '',
-      location: '',
       summary: ''
     },
     workExperience: [{
       company: '',
       position: '',
-      startDate: '',
-      endDate: '',
+      duration: '',
       description: ''
     }],
     education: [{
       institution: '',
       degree: '',
-      field: '',
       graduationYear: ''
     }],
     skills: [''],
     preferences: {
-      jobType: '',
-      expectedSalary: '',
       preferredLocation: '',
-      remoteWork: false
+
     }
   };
 
@@ -40,8 +35,7 @@ export class JobseekerprofileComponent {
     this.profile.workExperience.push({
       company: '',
       position: '',
-      startDate: '',
-      endDate: '',
+      duration: '',
       description: ''
     });
   }
@@ -54,7 +48,6 @@ export class JobseekerprofileComponent {
     this.profile.education.push({
       institution: '',
       degree: '',
-      field: '',
       graduationYear: ''
     });
   }
