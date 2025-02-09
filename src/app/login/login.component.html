@@ -1,0 +1,60 @@
+<div class="login-container">
+    <div class="login-card">
+      <h2>Welcome Back</h2>
+      <form #loginForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+        <!-- Email Field -->
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input 
+            type="email" 
+            id="email"
+            name="email"
+            [(ngModel)]="loginData.email"
+            #email="ngModel"
+            required
+            email
+            class="form-control"
+            [class.is-invalid]="email.invalid && (email.dirty || email.touched)">
+          <div class="error-message" *ngIf="email.invalid && (email.dirty || email.touched)">
+            <div *ngIf="email.errors?.['required']">Email is required</div>
+            <div *ngIf="email.errors?.['email']">Please enter a valid email</div>
+          </div>
+        </div>
+  
+        <!-- Password Field -->
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input 
+            type="password" 
+            id="password"
+            name="password"
+            [(ngModel)]="loginData.password"
+            #password="ngModel"
+            required
+            class="form-control"
+            [class.is-invalid]="password.invalid && (password.dirty || password.touched)">
+          <div class="error-message" *ngIf="password.invalid && (password.dirty || password.touched)">
+            <div *ngIf="password.errors?.['required']">Password is required</div>
+          </div>
+        </div>
+  
+        <!-- Forgot Password Link -->
+        <div class="forgot-password">
+          <a href="#">Forgot Password?</a>
+        </div>
+  
+        <!-- Submit Button -->
+        <button 
+          type="submit" 
+          class="btn btn-primary"
+          [disabled]="loginForm.invalid">
+          Login
+        </button>
+  
+        <!-- Sign Up Link -->
+        <div class="signup-link">
+          Don't have an account? <a href="#">Sign up</a>
+        </div>
+      </form>
+    </div>
+  </div>
