@@ -1,0 +1,111 @@
+<div class="register-container">
+    <div class="register-card">
+      <h2>Create Your Account</h2>
+      <form #registerForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+        <!-- Name Field -->
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input 
+            type="text" 
+            id="name"
+            name="name"
+            [(ngModel)]="user.name"
+            #name="ngModel"
+            required
+            minlength="3"
+            class="form-control"
+            [class.is-invalid]="name.invalid && (name.dirty || name.touched)">
+          <div class="error-message" *ngIf="name.invalid && (name.dirty || name.touched)">
+            <div *ngIf="name.errors?.['required']">Name is required</div>
+            <div *ngIf="name.errors?.['minlength']">Name must be at least 3 characters</div>
+          </div>
+        </div>
+  
+        <!-- Email Field -->
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input 
+            type="email" 
+            id="email"
+            name="email"
+            [(ngModel)]="user.email"
+            #email="ngModel"
+            required
+            email
+            class="form-control"
+            [class.is-invalid]="email.invalid && (email.dirty || email.touched)">
+          <div class="error-message" *ngIf="email.invalid && (email.dirty || email.touched)">
+            <div *ngIf="email.errors?.['required']">Email is required</div>
+            <div *ngIf="email.errors?.['email']">Please enter a valid email</div>
+          </div>
+        </div>
+  
+        <!-- Password Field -->
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input 
+            type="password" 
+            id="password"
+            name="password"
+            [(ngModel)]="user.password"
+            #password="ngModel"
+            required
+            minlength="6"
+            class="form-control"
+            [class.is-invalid]="password.invalid && (password.dirty || password.touched)">
+          <div class="error-message" *ngIf="password.invalid && (password.dirty || password.touched)">
+            <div *ngIf="password.errors?.['required']">Password is required</div>
+            <div *ngIf="password.errors?.['minlength']">Password must be at least 6 characters</div>
+          </div>
+        </div>
+  
+        <!-- Confirm Password Field -->
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input 
+            type="password" 
+            id="confirmPassword"
+            name="confirmPassword"
+            [(ngModel)]="user.confirmPassword"
+            #confirmPassword="ngModel"
+            required
+            class="form-control"
+            [class.is-invalid]="user.password !== user.confirmPassword && (confirmPassword.dirty || confirmPassword.touched)">
+          <div class="error-message" *ngIf="user.password !== user.confirmPassword && (confirmPassword.dirty || confirmPassword.touched)">
+            Passwords do not match
+          </div>
+        </div>
+  
+        <!-- Role Selection -->
+        <div class="form-group">
+          <label>Select Role</label>
+          <div class="role-selection">
+            <label class="role-option">
+              <input 
+                type="radio" 
+                name="role"
+                value="jobseeker"
+                [(ngModel)]="user.role">
+              <span class="role-label">Job Seeker</span>
+            </label>
+            <label class="role-option">
+              <input 
+                type="radio" 
+                name="role"
+                value="recruiter"
+                [(ngModel)]="user.role">
+              <span class="role-label">Recruiter</span>
+            </label>
+          </div>
+        </div>
+  
+        <!-- Submit Button -->
+        <button 
+          type="submit" 
+          class="btn btn-primary"
+          [disabled]="registerForm.invalid || user.password !== user.confirmPassword">
+          Create Account
+        </button>
+      </form>
+    </div>
+  </div>
