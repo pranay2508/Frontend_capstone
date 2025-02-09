@@ -1,0 +1,149 @@
+<!-- employer-dashboard.component.html -->
+<div class="dashboard-container">
+    <!-- Search Section -->
+    <div class="search-section">
+      <h2>Search Candidates</h2>
+      <div class="search-filters">
+        <div class="filter-group">
+          <input 
+            type="text" 
+            [(ngModel)]="searchCriteria.skills" 
+            placeholder="Skills (comma separated)"
+            class="filter-input">
+        </div>
+        
+        <div class="filter-group">
+          <input 
+            type="number" 
+            [(ngModel)]="searchCriteria.minExperience" 
+            placeholder="Min Experience"
+            class="filter-input">
+          <input 
+            type="number" 
+            [(ngModel)]="searchCriteria.maxExperience" 
+            placeholder="Max Experience"
+            class="filter-input">
+        </div>
+        
+        <div class="filter-group">
+          <input 
+            type="text" 
+            [(ngModel)]="searchCriteria.culturalFit" 
+            placeholder="Cultural Fit"
+            class="filter-input">
+        </div>
+        
+        <div class="button-group">
+          <button (click)="searchCandidates()" class="primary-btn">Search</button>
+          <button (click)="saveFilter()" class="secondary-btn">Save Filter</button>
+        </div>
+      </div>
+  
+      <!-- Saved Filters -->
+      <div class="saved-filters" *ngIf="savedFilters.length > 0">
+        <h3>Saved Filters</h3>
+        <div class="filter-chips">
+          <div 
+            *ngFor="let filter of savedFilters" 
+            class="filter-chip"
+            (click)="applyFilter(filter)">
+            {{filter.name}}
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Results Table -->
+    <div class="results-section">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Experience</th>
+            <th>Preference</th>
+            <th>Skills</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let seeker of jobSeekers">
+            <td>{{seeker.name}}</td>
+            <td>{{seeker.email}}</td>
+            <td>{{seeker.experience}} years</td>
+            <td>{{seeker.preference}}</td>
+            <td>{{seeker.skills.join(', ')}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Job Management -->
+    <div class="job-management">
+      <div class="button-group">
+        <button (click)="showCreateJob = true" class="primary-btn">Create Job</button>
+        <button (click)="getAllJobs()" class="secondary-btn">Get All Jobs</button>
+      </div>
+    </div>
+  
+    <!-- Create Job Modal -->
+    <div class="modal" *ngIf="showCreateJob">
+      <div class="modal-content">
+        <h2>Create New Job</h2>
+        <form #jobForm="ngForm" (ngSubmit)="createJob(jobForm)">
+          <div class="form-group">
+            <input 
+              type="text" 
+              name="title" 
+              ngModel 
+              required 
+              placeholder="Job Title"
+              class="form-input">
+          </div>
+          
+          <div class="form-group">
+            <textarea 
+              name="description" 
+              ngModel 
+              required 
+              placeholder="Job Description"
+              class="form-input"></textarea>
+          </div>
+          
+          <div class="form-group">
+            <input 
+              type="text" 
+              name="companyName" 
+              ngModel 
+              required 
+              placeholder="Company Name"
+              class="form-input">
+          </div>
+          
+          <div class="form-group">
+            <input 
+              type="text" 
+              name="requiredSkills" 
+              ngModel 
+              required 
+              placeholder="Required Skills (comma separated)"
+              class="form-input">
+          </div>
+          
+          <div class="form-group">
+            <input 
+              type="text" 
+              name="salaryRange" 
+              ngModel 
+              required 
+              placeholder="Salary Range"
+              class="form-input">
+          </div>
+          
+          <div class="button-group">
+            <button type="submit" class="primary-btn">Create Job</button>
+            <button type="button" (click)="showCreateJob = false" class="secondary-btn">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

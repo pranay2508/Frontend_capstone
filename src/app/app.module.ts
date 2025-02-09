@@ -7,6 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { JobseekerprofileComponent } from './jobseekerprofile/jobseekerprofile.component';
+import { EmployeedashboardComponent } from './employeedashboard/employeedashboard.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { JobseekerprofileComponent } from './jobseekerprofile/jobseekerprofile.c
     LandingpageComponent,
     LoginComponent,
     RegisterComponent,
-    JobseekerprofileComponent
+    JobseekerprofileComponent,
+    EmployeedashboardComponent
    
   ],
   imports: [
